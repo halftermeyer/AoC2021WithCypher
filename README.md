@@ -1,2 +1,4 @@
 # AoC2021WithCypher
-Advent of Code 2021 with cypher
+This pretends to showcase some cypher/neo4j.
+(cypher:ProgrammingLanguage)-[:IS_FOR]->(graph),
+(graph)-[:IS_FOR]->(everything)
