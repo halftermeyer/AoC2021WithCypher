@@ -95,6 +95,6 @@ UNWIND outDisplays AS out
 WITH entry, out[0] AS ord, out[1] AS out
 MATCH (e:Entry {id:entry})-[:HAS_MATCHING]->(m)-[:FROM]->(disp:Display),
 (m)-[:TO]->(d:Digit)
-WHERE apoc.coll.sort(apoc.coll.toSet(split(disp.display,''))) = apoc.coll.sort(apoc.coll.toSet(split(out,'')))
+WHERE apoc.coll.sort(split(disp.display,'')) = apoc.coll.sort(split(out,''))
 WITH entry, ord, out, d.val AS val, d.val * 10^(3-ord) AS dec_value
 RETURN toInteger(sum(dec_value));
