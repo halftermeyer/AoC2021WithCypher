@@ -17,7 +17,7 @@ SET l.stack = reduce(stack = [], chunk IN l.line |
           THEN apoc.coll.insert(stack, 0, chunk)
         ELSE // unstack on stack top / closing match
           CASE par_map[chunk] = stack[0] // match ?
-            WHEN true THEN apoc.coll.remove(stack, 0) // pop
+            WHEN true THEN apoc.coll.remove(stack, 0)
             ELSE ['ILLEGAL', chunk] // mismatch
         END
       END
