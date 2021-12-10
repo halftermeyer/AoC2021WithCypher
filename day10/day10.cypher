@@ -6,23 +6,25 @@ CREATE (:Line {id: line_no, line: line});
 
 // part 1
 MATCH (l:Line)
-WITH l, apoc.map.fromPairs([[')','('], ['}','{'], [']','['], ['>', '<']]) AS par_map
+WITH l, apoc.map.fromPairs([[')','('], ['}','{'], [']','['], ['>', '<']])
+  AS par_map
 SET l.stack = reduce(stack = [], chunk IN l.line |
   CASE stack [0]
     WHEN 'ILLEGAL' THEN stack // work is over
     ELSE
       CASE chunk IN ['(', '{', '[', '<']
-        WHEN true // opening
-          THEN apoc.coll.insert(stack, 0, chunk) // stack
-        ELSE // closing
-          CASE par_map[chunk] = stack[0]
+        WHEN true // stack opening
+          THEN apoc.coll.insert(stack, 0, chunk)
+        ELSE // unstack on stack top / closing match
+          CASE par_map[chunk] = stack[0] // match ?
             WHEN true THEN apoc.coll.remove(stack, 0) // pop
             ELSE ['ILLEGAL', chunk] // mismatch
         END
       END
-    END)
+    END);
 
-WITH apoc.map.fromPairs([[')',3], ['}',1197], [']',57], ['>', 25137]]) AS points_map
+WITH apoc.map.fromPairs([[')',3], ['}',1197], [']',57], ['>', 25137]])
+  AS points_map
 MATCH (l) WHERE l.stack[0] = 'ILLEGAL'
 RETURN sum(points_map[l.stack[1]]);
 
