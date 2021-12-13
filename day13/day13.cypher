@@ -56,12 +56,12 @@ WITH max(d.x) AS max_x, max(d.y) AS max_y, fold
 RETURN apoc.text.join([
   y IN range(0,max_y) |
     apoc.text.join([x IN range(0,max_x) |
-      custom.pixelFromDotCoordsAndFold(x,y,fold)], '')], '\n') AS result
+      custom.pixelFromDotCoordsAndFold(x,y,fold)], '')], '\n') AS result;
 
 
-      ##  ####   ## #  # #    #  #  ##    ##
-     #  # #       # # #  #    #  # #  #    #
-     #    ###     # ##   #    #  # #       #
-     #    #       # # #  #    #  # # ##    #
-     #  # #    #  # # #  #    #  # #  # #  #
-      ##  ####  ##  #  # ####  ##   ###  ##
+//      ##  ####   ## #  # #    #  #  ##    ##
+//     #  # #       # # #  #    #  # #  #    #
+//     #    ###     # ##   #    #  # #       #
+//     #    #       # # #  #    #  # # ##    #
+//     #  # #    #  # # #  #    #  # #  # #  #
+//      ##  ####  ##  #  # ####  ##   ###  ##
