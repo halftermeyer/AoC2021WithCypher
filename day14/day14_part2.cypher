@@ -45,6 +45,7 @@ WITH pair, count(pair) AS cardinality
 CREATE (p:Pair {left:pair[0], right: pair[1], label:pair[0]+pair[1],  cardinality: cardinality, step: 0})
 RETURN p;
 
+// apply the grammar 40 times
 CALL apoc.periodic.commit("
 MATCH (p:Pair)
 WITH max(p.step) AS last_step
@@ -61,7 +62,6 @@ CREATE (spawn_p:Pair {left:spawn_pair[0], right: spawn_pair[1], label:spawn_pair
 WITH count(spawn_p) AS limit
 RETURN limit"
 ,{});
-
 
 //get the result
 CALL {
