@@ -1,0 +1,277 @@
+{
+  "style": {
+    "font-family": "sans-serif",
+    "background-color": "#ffffff",
+    "node-color": "#ffffff",
+    "border-width": 4,
+    "border-color": "#000000",
+    "radius": 50,
+    "node-padding": 5,
+    "node-margin": 2,
+    "outside-position": "auto",
+    "node-icon-image": "",
+    "node-background-image": "",
+    "icon-position": "inside",
+    "icon-size": 64,
+    "caption-position": "inside",
+    "caption-max-width": 200,
+    "caption-color": "#000000",
+    "caption-font-size": 50,
+    "caption-font-weight": "normal",
+    "label-position": "inside",
+    "label-display": "pill",
+    "label-color": "#000000",
+    "label-background-color": "#ffffff",
+    "label-border-color": "#000000",
+    "label-border-width": 4,
+    "label-font-size": 40,
+    "label-padding": 5,
+    "label-margin": 4,
+    "directionality": "directed",
+    "detail-position": "inline",
+    "detail-orientation": "parallel",
+    "arrow-width": 5,
+    "arrow-color": "#000000",
+    "margin-start": 5,
+    "margin-end": 5,
+    "margin-peer": 20,
+    "attachment-start": "normal",
+    "attachment-end": "normal",
+    "relationship-icon-image": "",
+    "type-color": "#000000",
+    "type-background-color": "#ffffff",
+    "type-border-color": "#000000",
+    "type-border-width": 0,
+    "type-font-size": 16,
+    "type-padding": 5,
+    "property-position": "outside",
+    "property-alignment": "colon",
+    "property-color": "#000000",
+    "property-font-size": 16,
+    "property-font-weight": "normal"
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "position": {
+        "x": 244.89385212946286,
+        "y": 887.5351575866576
+      },
+      "caption": "",
+      "labels": [
+        "State",
+        "Initial"
+      ],
+      "properties": {
+        "type": "version",
+        "length": "3"
+      },
+      "style": {
+        "border-color": "#f44e3b"
+      }
+    },
+    {
+      "id": "n1",
+      "position": {
+        "x": 75,
+        "y": 408.28989614860325
+      },
+      "caption": "",
+      "labels": [
+        "State"
+      ],
+      "properties": {
+        "type": "typeID",
+        "length": "3"
+      },
+      "style": {}
+    },
+    {
+      "id": "n2",
+      "position": {
+        "x": 2010.3584026195047,
+        "y": -196.4540456354876
+      },
+      "caption": "",
+      "labels": [
+        "State"
+      ],
+      "properties": {
+        "type": "number",
+        "length": "5"
+      },
+      "style": {}
+    },
+    {
+      "id": "n3",
+      "position": {
+        "x": 661.1364885841081,
+        "y": 355.2841217097819
+      },
+      "caption": "",
+      "labels": [
+        "State"
+      ],
+      "properties": {
+        "type": "lengthTypeID",
+        "length": "1"
+      },
+      "style": {}
+    },
+    {
+      "id": "n5",
+      "position": {
+        "x": 1079.3128295608235,
+        "y": 190.2308043375656
+      },
+      "caption": "",
+      "labels": [
+        "State",
+        "EndPacket"
+      ],
+      "properties": {
+        "type": "subpacketsLength",
+        "length": "15"
+      },
+      "style": {
+        "border-color": "#a4dd00"
+      }
+    },
+    {
+      "id": "n6",
+      "position": {
+        "x": 494.24383929535713,
+        "y": 568.6903845106684
+      },
+      "caption": "",
+      "labels": [
+        "State",
+        "EndPacket"
+      ],
+      "properties": {
+        "type": "subpacketsNumber",
+        "length": "15"
+      },
+      "style": {
+        "border-color": "#a4dd00"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "n0",
+      "fromId": "n0",
+      "toId": "n1",
+      "type": "NEXT",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n1",
+      "fromId": "n1",
+      "toId": "n2",
+      "type": "NEXT",
+      "properties": {
+        "val": [
+          4
+        ]
+      },
+      "style": {}
+    },
+    {
+      "id": "n2",
+      "fromId": "n1",
+      "toId": "n3",
+      "type": "NEXT",
+      "properties": {
+        "val": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ]
+      },
+      "style": {}
+    },
+    {
+      "id": "n3",
+      "fromId": "n2",
+      "toId": "n2",
+      "type": "NEXT",
+      "properties": {
+        "val": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      },
+      "style": {}
+    },
+    {
+      "id": "n5",
+      "fromId": "n3",
+      "toId": "n5",
+      "type": "NEXT",
+      "properties": {
+        "val": [
+          0
+        ]
+      },
+      "style": {}
+    },
+    {
+      "id": "n6",
+      "fromId": "n3",
+      "toId": "n6",
+      "type": "NEXT",
+      "properties": {
+        "val": [
+          1
+        ]
+      },
+      "style": {}
+    },
+    {
+      "id": "n8",
+      "fromId": "n5",
+      "toId": "n0",
+      "type": "NEXT",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n9",
+      "fromId": "n6",
+      "toId": "n0",
+      "type": "NEXT",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "n10",
+      "type": "NEXT",
+      "style": {},
+      "properties": {
+        "val": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+      },
+      "fromId": "n2",
+      "toId": "n0"
+    }
+  ]
+}
