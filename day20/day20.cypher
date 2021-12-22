@@ -38,10 +38,10 @@ CALL apoc.periodic.iterate('UNWIND range(1,50) AS i RETURN i',"
 MATCH (algo:Algorithm)
 MATCH (n:Pixel)-[r:NEXT_TO]->(m:Pixel)
 WITH algo, n, r, m
-WITH algo, n, count(r) AS convol_size, toInteger(sum(r.factor * m.val)) AS val
+WITH algo, n, toInteger(sum(r.factor * m.val)) AS val
 WITH n, convol_size, val, CASE algo.code[val] WHEN '#' THEN 1 ELSE 0 END AS new_pix
-WHERE convol_size = 9
-SET n.val = new_pix",{batchSize:1});
+SET n.val = new_pix
+",{batchSize:1});
 
 MATCH (n:Pixel)
 RETURN sum (n.val)
