@@ -29,17 +29,22 @@ WITH max (n.x) AS max_x, max (n.y) AS max_y, count(n) AS _
 MATCH (p:Pixel)
 FOREACH (y IN range(-1, 1) |
   FOREACH (x IN range(-1, 1) |
-    MERGE (n:Pixel {x: (max_x + 1 +p.x + x) % (max_x + 1), y: (max_y + 1 + p.y + y) % (max_y + 1)})
-    CREATE (p)-[:NEXT_TO {x: x, y: y, ordinal: x+1 + (y+1)*3, factor: 2^(8-(x+1 + (y+1)*3))}]->(n)
+    MERGE (n:Pixel {x: (max_x + 1 +p.x + x) % (max_x + 1),
+      y: (max_y + 1 + p.y + y) % (max_y + 1)})
+    CREATE (p)-[:NEXT_TO {x: x, y: y, ordinal: x+1 + (y+1)*3,
+      factor: 2^(8-(x+1 + (y+1)*3))}]->(n)
     )
   );
 
+// convolution
 CALL apoc.periodic.iterate('UNWIND range(1,50) AS i RETURN i',"
 MATCH (algo:Algorithm)
 MATCH (n:Pixel)-[r:NEXT_TO]->(m:Pixel)
 WITH algo, n, r, m
-WITH algo, n, toInteger(sum(r.factor * m.val)) AS val
-WITH n, convol_size, val, CASE algo.code[val] WHEN '#' THEN 1 ELSE 0 END AS new_pix
+WITH algo, n, count(r) AS convol_size, toInteger(sum(r.factor * m.val)) AS val
+WITH n, convol_size, val, CASE algo.code[val]
+  WHEN '#' THEN 1 ELSE 0 END AS new_pix
+WHERE convol_size = 9
 SET n.val = new_pix
 ",{batchSize:1});
 
